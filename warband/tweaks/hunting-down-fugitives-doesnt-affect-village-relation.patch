@@ -1,0 +1,13 @@
+diff --git a/warband/module-system/Module_system 1.171/module_mission_templates.py b/warband/module-system/Module_system 1.171/module_mission_templates.py
+index 05c5bb1..c17466d 100644
+--- a/warband/module-system/Module_system 1.171/module_mission_templates.py	
++++ b/warband/module-system/Module_system 1.171/module_mission_templates.py	
+@@ -1897,7 +1897,7 @@ mission_templates = [
+           (call_script, "script_fail_quest", "qst_hunt_down_fugitive"),
+           (finish_mission, 4),
+         (else_try),
+-          (call_script, "script_change_player_relation_with_center", "$current_town", -2),
++          (call_script, "script_change_player_relation_with_center", "$current_town", 0),
+           (call_script, "script_succeed_quest", "qst_hunt_down_fugitive"),
+         (try_end),
+         ]),
