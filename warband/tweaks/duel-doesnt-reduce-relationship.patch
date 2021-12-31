@@ -1,0 +1,13 @@
+diff --git a/warband/module-system/Module_system 1.171/module_dialogs.py b/warband/module-system/Module_system 1.171/module_dialogs.py
+index 74f2646..bd2554b 100644
+--- a/warband/module-system/Module_system 1.171/module_dialogs.py	
++++ b/warband/module-system/Module_system 1.171/module_dialogs.py	
+@@ -10115,7 +10115,7 @@ dialogs = [
+     (try_end),  
+   ], "{s15}", "close_window",
+    [
+-     (call_script, "script_change_player_relation_with_troop", "$g_talk_troop", -15),
++     (call_script, "script_change_player_relation_with_troop", "$g_talk_troop", 0),
+      (call_script, "script_set_up_duel_with_troop", "$g_talk_troop"),
+    ]],
+ 
