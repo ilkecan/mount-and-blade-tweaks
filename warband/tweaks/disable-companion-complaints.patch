@@ -1,0 +1,13 @@
+diff --git a/warband/module-system/Module_system 1.171/module_scripts.py b/warband/module-system/Module_system 1.171/module_scripts.py
+index 9af03e5..e265422 100644
+--- a/warband/module-system/Module_system 1.171/module_scripts.py	
++++ b/warband/module-system/Module_system 1.171/module_scripts.py	
+@@ -65,7 +65,7 @@ scripts = [
+ 	  (call_script, "script_initialize_item_info"),
+ 	  (call_script, "script_initialize_aristocracy"),
+       (call_script, "script_initialize_npcs"),
+-      (assign, "$disable_npc_complaints", 0),
++      (assign, "$disable_npc_complaints", 1),
+       #NPC companion changes end
+       
+       # Setting random feast time
