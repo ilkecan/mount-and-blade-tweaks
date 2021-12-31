@@ -1,0 +1,84 @@
+diff --git a/warband/module-system/Module_system 1.171/module_game_menus.py b/warband/module-system/Module_system 1.171/module_game_menus.py
+index 040ec82..15022aa 100644
+--- a/warband/module-system/Module_system 1.171/module_game_menus.py	
++++ b/warband/module-system/Module_system 1.171/module_game_menus.py	
+@@ -8832,7 +8832,78 @@ game_menus = [
+               (call_script, "script_enter_court", "$current_town"),
+            (try_end),
+         ], "Door to the castle."),
+-      
++
++      ("dplmc_guild_master_meeting",
++       [(party_slot_eq,"$current_town",slot_party_type, spt_town),
++	    ##nested diplomacy start+
++		#rubik had a good idea: only enable this after meeting the guild master
++		(assign, ":can_meet_guild_master", 0),
++		(try_begin),
++			#Always can jump to guild master in cheat mode.
++			(eq, "$cheat_mode", 1),
++			(assign, ":can_meet_guild_master", 1),
++		(else_try),
++			#Can jump to guild master after meeting him once.
++			(party_get_slot, ":guild_master_troop", "$current_town",slot_town_elder),
++			(ge, ":guild_master_troop", 1),
++			(neg|troop_slot_eq, ":guild_master_troop", slot_troop_met, 0),
++			(assign, ":can_meet_guild_master", 1),
++		(else_try),
++			#Always enable this in Praven for the sake of playability, since
++			#the guild master there is weirdly hard to find.
++			(this_or_next|eq, "$current_town", "p_town_6"),
++			#Also enable in the starting town, to avoid confusing players into
++			#thinking the menu item doesn't exist.
++			(eq, "$g_starting_town", "$current_town"),
++			(assign, ":can_meet_guild_master", 1),
++		(try_end),
++		(neq, ":can_meet_guild_master", 0),
++		##nested diplomacy end+
++        (this_or_next|eq,"$entry_to_town_forbidden",0),
++        (eq, "$sneaked_into_town",1),
++		],
++       "Meet the Guild Master.",
++       [
++         (try_begin),
++           (call_script, "script_cf_enter_center_location_bandit_check"),
++         (else_try),
++           (party_get_slot, ":town_scene", "$current_town", slot_town_center),
++           (modify_visitors_at_site, ":town_scene"),
++           (reset_visitors),
++
++           (party_get_slot, ":guild_master_troop", "$current_town",slot_town_elder),
++           (set_visitor,11,":guild_master_troop"),
++
++           (set_jump_mission,"mt_town_center"),
++           (jump_to_scene, ":town_scene"),
++           (change_screen_map_conversation, ":guild_master_troop"),
++         (try_end),
++      ]),
++
++	  ##nested diplomacy start+
++	  #If you can't jump to the guild master, explain why
++      ("dplmc_guild_master_meeting_denied",
++      [
++          #Only show this when the player would get the rest of the town menu
++          (party_slot_eq,"$current_town",slot_party_type, spt_town),
++          (this_or_next|eq,"$entry_to_town_forbidden",0),
++          (eq, "$sneaked_into_town",1),
++          #There is a valid guild master, and you haven't met him,
++          #and there isn't another condition that enables the jump.
++          (party_get_slot, ":guild_master_troop", "$current_town",slot_town_elder),
++          (gt, ":guild_master_troop", 0),
++          (eq, "$cheat_mode", 0),
++          (neq, "$g_starting_town", "$current_town"),
++          (neq, "$current_town", "p_town_6"),
++          (troop_slot_eq, ":guild_master_troop", slot_troop_met, 0),
++          (disable_menu_option),
++          ],
++         "You have not met the Guild Master yet.",
++         [
++       ]),
++	  ##nested diplomacy end+
++	  ##diplomacy end
++
+       ("town_center",
+       [                        
+         (party_slot_eq, "$current_town", slot_party_type, spt_town),
