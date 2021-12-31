@@ -1,0 +1,22 @@
+diff --git a/warband/module-system/Module_system 1.171/module_dialogs.py b/warband/module-system/Module_system 1.171/module_dialogs.py
+index 74f2646..baa8958 100644
+--- a/warband/module-system/Module_system 1.171/module_dialogs.py	
++++ b/warband/module-system/Module_system 1.171/module_dialogs.py	
+@@ -15586,7 +15586,7 @@ I suppose there are plenty of bounty hunters around to get the job done . . .",
+   [anyone,"lord_mission_rejected", [], "Is that so? Well, I suppose you're just not up to the task.\
+  I shall have to look for somebody with more mettle.", "close_window",
+    [(assign, "$g_leave_encounter",1),
+-    (call_script, "script_change_player_relation_with_troop", "$g_talk_troop", -1),
++    (call_script, "script_change_player_relation_with_troop", "$g_talk_troop", 0),
+     (try_begin),
+       (quest_slot_eq, "$random_quest_no", slot_quest_dont_give_again_remaining_days, 0),
+       (quest_set_slot, "$random_quest_no", slot_quest_dont_give_again_remaining_days, 1),
+@@ -17757,7 +17757,7 @@ I suppose there are plenty of bounty hunters around to get the job done . . .",
+   [anyone,"lady_mission_rejected", [], "You'll not help a woman in need? You should be ashamed, {playername}...\
+  Please leave me, I have some important embroidery to catch up.", "close_window",
+    [
+-     (call_script, "script_change_player_relation_with_troop", "$g_talk_troop", -1),
++     (call_script, "script_change_player_relation_with_troop", "$g_talk_troop", 0),
+      (troop_set_slot, "$g_talk_troop", slot_troop_does_not_give_quest, 1),
+     ]],
+ 
