@@ -1,0 +1,248 @@
+diff --git a/warband/module-system/Module_system 1.171/module_mission_templates.py b/warband/module-system/Module_system 1.171/module_mission_templates.py
+index 05c5bb1..f2fec19 100644
+--- a/warband/module-system/Module_system 1.171/module_mission_templates.py	
++++ b/warband/module-system/Module_system 1.171/module_mission_templates.py	
+@@ -693,7 +693,6 @@ custom_battle_check_victory_condition = (
+     (store_mission_timer_a,reg(1)),
+     (ge,reg(1),10),
+     (all_enemies_defeated, 2),
+-    (neg|main_hero_fallen, 0),
+     (set_mission_result,1),
+     (display_message,"str_msg_battle_won"),
+     (assign, "$g_battle_won",1),
+@@ -891,7 +890,6 @@ common_battle_check_victory_condition = (
+     (store_mission_timer_a,reg(1)),
+     (ge,reg(1),10),
+     (all_enemies_defeated, 5),
+-    (neg|main_hero_fallen, 0),
+     (set_mission_result,1),
+     (display_message,"str_msg_battle_won"),
+     (assign,"$g_battle_won",1),
+@@ -2369,15 +2367,23 @@ mission_templates = [
+       common_battle_check_victory_condition,
+       common_battle_victory_display,
+ 
+-      (1, 4, ti_once, [(main_hero_fallen)],
+-          [
+-              (assign, "$pin_player_fallen", 1),
+-              (str_store_string, s5, "str_retreat"),
+-              (call_script, "script_simulate_retreat", 10, 20, 1),
+-              (assign, "$g_battle_result", -1),
+-              (set_mission_result,-1),
+-              (call_script, "script_count_mission_casualties_from_agents"),
+-              (finish_mission,0)]),
++      (1, 4, 0, [(main_hero_fallen)],
++          [
++              (assign, "$pin_player_fallen", 1),
++           (assign, ":num_allies", 0),
++           (try_for_agents, ":agent"),
++              (agent_is_ally, ":agent"),
++             (agent_is_alive, ":agent"),
++             (val_add, ":num_allies", 1),
++           (try_end),
++           (try_begin),
++             (eq, ":num_allies", 0),
++            (assign, "$g_battle_result", -1),
++                (set_mission_result,-1),
++                (call_script, "script_count_mission_casualties_from_agents"),
++                (finish_mission,0),
++           (try_end),
++           ]),
+ 
+       common_battle_inventory,
+ 
+@@ -2458,15 +2464,23 @@ mission_templates = [
+       common_battle_check_victory_condition,
+       common_battle_victory_display,
+ 
+-      (1, 4, ti_once, [(main_hero_fallen)],
+-          [
+-              (assign, "$pin_player_fallen", 1),
+-              (str_store_string, s5, "str_retreat"),
+-              (call_script, "script_simulate_retreat", 10, 20, 1),
+-              (assign, "$g_battle_result", -1),
+-              (set_mission_result, -1),
+-              (call_script, "script_count_mission_casualties_from_agents"),
+-              (finish_mission, 0)]),
++      (1, 4, 0, [(main_hero_fallen)],
++          [
++              (assign, "$pin_player_fallen", 1),
++           (assign, ":num_allies", 0),
++           (try_for_agents, ":agent"),
++              (agent_is_ally, ":agent"),
++             (agent_is_alive, ":agent"),
++             (val_add, ":num_allies", 1),
++           (try_end),
++           (try_begin),
++             (eq, ":num_allies", 0),
++            (assign, "$g_battle_result", -1),
++                (set_mission_result,-1),
++                (call_script, "script_count_mission_casualties_from_agents"),
++                (finish_mission,0),
++           (try_end),
++           ]),
+ 
+       common_battle_inventory,      
+       common_battle_order_panel,
+@@ -2526,7 +2540,6 @@ mission_templates = [
+          (store_mission_timer_a,reg(1)),
+          (ge,reg(1),10),
+          (all_enemies_defeated, 5),
+-         (neg|main_hero_fallen, 0),
+          (set_mission_result,1),
+          (display_message,"str_msg_battle_won"),
+          (assign,"$g_battle_won",1),
+@@ -2545,15 +2558,23 @@ mission_templates = [
+ 
+       common_battle_victory_display,
+ 
+-      (1, 4, ti_once, [(main_hero_fallen)],
+-          [
+-              (assign, "$pin_player_fallen", 1),
+-              (str_store_string, s5, "str_retreat"),
+-              (call_script, "script_simulate_retreat", 10, 20, 1),
+-              (assign, "$g_battle_result", -1),
+-              (set_mission_result,-1),
+-              (call_script, "script_count_mission_casualties_from_agents"),
+-              (finish_mission,0)]),
++      (1, 4, 0, [(main_hero_fallen)],
++          [
++              (assign, "$pin_player_fallen", 1),
++           (assign, ":num_allies", 0),
++           (try_for_agents, ":agent"),
++              (agent_is_ally, ":agent"),
++             (agent_is_alive, ":agent"),
++             (val_add, ":num_allies", 1),
++           (try_end),
++           (try_begin),
++             (eq, ":num_allies", 0),
++            (assign, "$g_battle_result", -1),
++                (set_mission_result,-1),
++                (call_script, "script_count_mission_casualties_from_agents"),
++                (finish_mission,0),
++           (try_end),
++           ]),
+ 
+       common_battle_inventory,
+       common_battle_order_panel,
+@@ -2777,16 +2798,23 @@ mission_templates = [
+       common_battle_check_victory_condition,
+       common_battle_victory_display,
+ 
+-      (1, 4, ti_once, [(main_hero_fallen)],
+-          [
+-              (assign, "$pin_player_fallen", 1),
+-              (str_store_string, s5, "str_retreat"),
+-              (call_script, "script_simulate_retreat", 5, 20, 0),
+-              (assign, "$g_battle_result", -1),
+-              (set_mission_result,-1),
+-              (call_script, "script_count_mission_casualties_from_agents"),
+-              (finish_mission,0)
+-              ]),
++      (1, 4, 0, [(main_hero_fallen)],
++          [
++              (assign, "$pin_player_fallen", 1),
++           (assign, ":num_allies", 0),
++           (try_for_agents, ":agent"),
++              (agent_is_ally, ":agent"),
++             (agent_is_alive, ":agent"),
++             (val_add, ":num_allies", 1),
++           (try_end),
++           (try_begin),
++             (eq, ":num_allies", 0),
++            (assign, "$g_battle_result", -1),
++                (set_mission_result,-1),
++                (call_script, "script_count_mission_casualties_from_agents"),
++                (finish_mission,0),
++           (try_end),
++           ]),
+       
+       common_battle_order_panel,
+       common_battle_order_panel_tick,
+@@ -2841,16 +2869,23 @@ mission_templates = [
+       common_battle_check_victory_condition,
+       common_battle_victory_display,
+ 
+-      (1, 4, ti_once, [(main_hero_fallen)],
+-          [
+-              (assign, "$pin_player_fallen", 1),
+-              (str_store_string, s5, "str_retreat"),
+-              (call_script, "script_simulate_retreat", 5, 20, 0),
+-              (assign, "$g_battle_result", -1),
+-              (set_mission_result,-1),
+-              (call_script, "script_count_mission_casualties_from_agents"),
+-              (finish_mission,0)
+-              ]),
++      (1, 4, 0, [(main_hero_fallen)],
++          [
++              (assign, "$pin_player_fallen", 1),
++           (assign, ":num_allies", 0),
++           (try_for_agents, ":agent"),
++              (agent_is_ally, ":agent"),
++             (agent_is_alive, ":agent"),
++             (val_add, ":num_allies", 1),
++           (try_end),
++           (try_begin),
++             (eq, ":num_allies", 0),
++            (assign, "$g_battle_result", -1),
++                (set_mission_result,-1),
++                (call_script, "script_count_mission_casualties_from_agents"),
++                (finish_mission,0),
++           (try_end),
++           ]),
+ 
+       common_battle_order_panel,
+       common_battle_order_panel_tick,
+@@ -2927,7 +2962,6 @@ mission_templates = [
+       (1, 60, ti_once, [(store_mission_timer_a, reg(1)),
+                         (ge, reg(1), 10),
+                         (all_enemies_defeated, 2),
+-                        (neg|main_hero_fallen,0),
+                         (set_mission_result,1),
+                         (display_message,"str_msg_battle_won"),
+                         (assign, "$g_battle_won", 1),
+@@ -2941,15 +2975,23 @@ mission_templates = [
+ 
+       common_battle_victory_display,
+ 
+-      (1, 4, ti_once, [(main_hero_fallen)],
+-          [
+-              (assign, "$pin_player_fallen", 1),
+-              (str_store_string, s5, "str_retreat"),
+-              (call_script, "script_simulate_retreat", 5, 20, 0),
+-              (assign, "$g_battle_result", -1),
+-              (set_mission_result, -1),
+-              (call_script, "script_count_mission_casualties_from_agents"),
+-              (finish_mission,0)]),
++      (1, 4, 0, [(main_hero_fallen)],
++          [
++              (assign, "$pin_player_fallen", 1),
++           (assign, ":num_allies", 0),
++           (try_for_agents, ":agent"),
++              (agent_is_ally, ":agent"),
++             (agent_is_alive, ":agent"),
++             (val_add, ":num_allies", 1),
++           (try_end),
++           (try_begin),
++             (eq, ":num_allies", 0),
++            (assign, "$g_battle_result", -1),
++                (set_mission_result,-1),
++                (call_script, "script_count_mission_casualties_from_agents"),
++                (finish_mission,0),
++           (try_end),
++           ]),
+ 
+       common_battle_order_panel,
+       common_battle_order_panel_tick,
+diff --git a/warband/module-system/Module_system 1.171/module_scripts.py b/warband/module-system/Module_system 1.171/module_scripts.py
+index 9af03e5..c44b718 100644
+--- a/warband/module-system/Module_system 1.171/module_scripts.py	
++++ b/warband/module-system/Module_system 1.171/module_scripts.py	
+@@ -20255,7 +20255,6 @@ scripts = [
+   ("cf_check_enemies_nearby",
+     [
+       (get_player_agent_no, ":player_agent"),
+-      (agent_is_alive, ":player_agent"),
+       (agent_get_position, pos1, ":player_agent"),
+       (assign, ":result", 0),
+       (set_fixed_point_multiplier, 100),
