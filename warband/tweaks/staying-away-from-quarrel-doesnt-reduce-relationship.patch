@@ -1,0 +1,15 @@
+diff --git a/warband/module-system/Module_system 1.171/module_dialogs.py b/warband/module-system/Module_system 1.171/module_dialogs.py
+index 74f2646..daf93a2 100644
+--- a/warband/module-system/Module_system 1.171/module_dialogs.py	
++++ b/warband/module-system/Module_system 1.171/module_dialogs.py	
+@@ -5842,8 +5842,8 @@ dialogs = [
+ #Post 0907 changes end
+   
+   [anyone|plyr ,"lord_event_choose_friend", [],  "I don't want to be involved in your quarrel with {s6}.", "lord_event_choose_friend_neutral", [
+-      (call_script, "script_change_player_relation_with_troop","$g_talk_troop",-2),
+-      (call_script, "script_change_player_relation_with_troop","$temp",-3),
++      (call_script, "script_change_player_relation_with_troop","$g_talk_troop",0),
++      (call_script, "script_change_player_relation_with_troop","$temp",0),
+       ]],
+ 
+   [anyone ,"lord_event_choose_friend_neutral", [],  "Hmph. As you wish, {playername}.\
