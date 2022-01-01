@@ -1,0 +1,13 @@
+diff --git a/warband/module-system/Module_system 1.171/module_presentations.py b/warband/module-system/Module_system 1.171/module_presentations.py
+index e566420..e86af6c 100644
+--- a/warband/module-system/Module_system 1.171/module_presentations.py	
++++ b/warband/module-system/Module_system 1.171/module_presentations.py	
+@@ -12737,7 +12737,7 @@ presentations = [
+         (gt, ":all_centers_accumulated_total", 0),
+         (store_sub, ":ratio_lost", ":num_owned_center_values_for_tax_efficiency", ":num_centers_needed_for_efficiency_loss"),
+         (val_mul, ":ratio_lost", ":tax_efficiency_loss_ratio_per_center"),
+-        (val_min, ":ratio_lost", 65),
++        (val_min, ":ratio_lost", 0),
+                 
+         #(store_mul, ":tax_lost", ":all_centers_accumulated_total", ":ratio_lost"),
+         (store_mul, ":tax_lost", ":all_centers_accumulated_taxes_and_rents", ":ratio_lost"),
