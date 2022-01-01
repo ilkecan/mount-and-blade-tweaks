@@ -1,0 +1,13 @@
+diff --git a/warband/module-system/Module_system 1.171/module_dialogs.py b/warband/module-system/Module_system 1.171/module_dialogs.py
+index 74f2646..5bccd83 100644
+--- a/warband/module-system/Module_system 1.171/module_dialogs.py	
++++ b/warband/module-system/Module_system 1.171/module_dialogs.py	
+@@ -25574,7 +25574,7 @@ I suppose there are plenty of bounty hunters around to get the job done . . .",
+ 
+   [anyone|plyr,"party_encounter_hostile_defender", [],
+    "Surrender or die!", "party_encounter_hostile_ultimatum_surrender", [
+-
++       (call_script, "script_make_kingdom_hostile_to_player", "$g_encountered_party_faction", -3),
+        ]],
+ 
+ #post 0907 changes begin
