@@ -1,0 +1,20 @@
+diff --git a/warband/module-system/Module_system 1.171/module_simple_triggers.py b/warband/module-system/Module_system 1.171/module_simple_triggers.py
+index 1a63807..4cd21cf 100644
+--- a/warband/module-system/Module_system 1.171/module_simple_triggers.py	
++++ b/warband/module-system/Module_system 1.171/module_simple_triggers.py	
+@@ -2942,15 +2942,6 @@ simple_triggers = [
+      (try_end),
+      ]),
+ 		
+-  # Reduce renown slightly by 0.5% every week
+-  (7 * 24,
+-   [
+-       (troop_get_slot, ":player_renown", "trp_player", slot_troop_renown),
+-       (store_div, ":renown_decrease", ":player_renown", 200),
+-       (val_sub, ":player_renown", ":renown_decrease"),
+-       (troop_set_slot, "trp_player", slot_troop_renown, ":player_renown"),
+-    ]),
+-
+   # Read books if player is resting.
+   (1, [(neg|map_free),
+        (gt, "$g_player_reading_book", 0),
