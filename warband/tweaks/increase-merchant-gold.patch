@@ -1,0 +1,26 @@
+diff --git a/warband/module-system/Module_system 1.171/module_scripts.py b/warband/module-system/Module_system 1.171/module_scripts.py
+index e756cc4..72ba867 100644
+--- a/warband/module-system/Module_system 1.171/module_scripts.py	
++++ b/warband/module-system/Module_system 1.171/module_scripts.py	
+@@ -48138,8 +48138,8 @@ scripts = [
+       (troop_ensure_inventory_space, ":cur_merchant", 20),
+       (troop_sort_inventory, ":cur_merchant"),
+       (store_troop_gold, ":cur_gold",":cur_merchant"),
+-      (lt,":cur_gold",1500),
+-      (store_random_in_range,":new_gold",500,1000),
++      (lt,":cur_gold",15000),
++      (store_random_in_range,":new_gold",5000,10000),
+       (call_script, "script_troop_add_gold", ":cur_merchant", ":new_gold"),
+     (try_end), 	
+   ]), 
+@@ -48209,8 +48209,8 @@ scripts = [
+       (troop_ensure_inventory_space, ":cur_merchant", 65),
+       (troop_sort_inventory, ":cur_merchant"),
+       (store_troop_gold, ":cur_gold", ":cur_merchant"),
+-      (lt, ":cur_gold", 600),
+-      (store_random_in_range, ":new_gold", 250, 500),
++      (lt, ":cur_gold", 6000),
++      (store_random_in_range, ":new_gold", 2500, 5000),
+       (call_script, "script_troop_add_gold", ":cur_merchant", ":new_gold"),
+     (try_end),
+   ]),
