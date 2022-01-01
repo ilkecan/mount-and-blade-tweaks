@@ -1,0 +1,13 @@
+diff --git a/warband/module-system/Module_system 1.171/module_mission_templates.py b/warband/module-system/Module_system 1.171/module_mission_templates.py
+index 05c5bb1..a12ef74 100644
+--- a/warband/module-system/Module_system 1.171/module_mission_templates.py	
++++ b/warband/module-system/Module_system 1.171/module_mission_templates.py	
+@@ -14707,7 +14707,7 @@ mission_templates = [
+ 	"bandit_lair",mtf_battle_mode|mtf_synch_inventory,charge,
+     "Ambushing a bandit lair",
+     [
+-      (0,mtef_team_0|mtef_use_exact_number,af_override_horse, aif_start_alarmed, 7,[]),
++      (0,mtef_team_0|mtef_use_exact_number,af_override_horse, aif_start_alarmed, 20,[]),
+       (1,mtef_visitor_source|mtef_team_1,af_override_horse, aif_start_alarmed,20,[]),
+       (2,mtef_visitor_source|mtef_team_1,af_override_horse, aif_start_alarmed,20,[]),
+       (3,mtef_visitor_source|mtef_team_1,af_override_horse, aif_start_alarmed,20,[]),
