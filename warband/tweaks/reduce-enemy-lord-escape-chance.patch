@@ -1,0 +1,19 @@
+diff --git a/warband/module-system/Module_system 1.171/module_scripts.py b/warband/module-system/Module_system 1.171/module_scripts.py
+index 9af03e5..f18b982 100644
+--- a/warband/module-system/Module_system 1.171/module_scripts.py	
++++ b/warband/module-system/Module_system 1.171/module_scripts.py	
+@@ -34960,7 +34960,13 @@ scripts = [
+       (try_begin),
+         (eq, ":quest_target", 0), #if not quest target
+         (store_random_in_range, ":rand", 0, 100),
+-        (lt, ":rand", hero_escape_after_defeat_chance),
++		(assign, ":escape_chance", 70),
++		(try_begin),
++			(store_skill_level, ":level", "skl_prisoner_management", "trp_player"),
++			(val_mul, ":level", 5), # reducing 5%
++			(val_sub, ":escape_chance", ":level"),
++		(try_end),
++		(lt, ":rand", ":escape_chance"),
+         (assign, ":continue", 1),
+       (else_try),  
+         (eq, ":quest_target", -1), #if (always run) quest target
