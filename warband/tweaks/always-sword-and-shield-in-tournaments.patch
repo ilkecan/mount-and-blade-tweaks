@@ -1,9 +1,19 @@
 diff --git a/warband/module-system/Module_system 1.171/module_scripts.py b/warband/module-system/Module_system 1.171/module_scripts.py
-index 9af03e5..744eb1d 100644
+index 9af03e5..e756cc4 100644
 --- a/warband/module-system/Module_system 1.171/module_scripts.py	
 +++ b/warband/module-system/Module_system 1.171/module_scripts.py	
-@@ -38798,81 +38798,14 @@ scripts = [
-       (store_script_param, ":crossbow_sword_chance", 8),
+@@ -38788,91 +38788,15 @@ scripts = [
+   # Output: none (sets mt_arena_melee_fight items)
+   ("set_items_for_tournament",
+     [
+-      (store_script_param, ":horse_chance", 1),
+-      (store_script_param, ":lance_chance", 2),
+-      (store_script_param, ":sword_chance", 3),
+-      (store_script_param, ":axe_chance", 4),
+-      (store_script_param, ":bow_chance", 5),
+-      (store_script_param, ":javelin_chance", 6),
+-      (store_script_param, ":mounted_bow_chance", 7),
+-      (store_script_param, ":crossbow_sword_chance", 8),
        (store_script_param, ":armor_item_begin", 9),
        (store_script_param, ":helm_item_begin", 10),
 -      (store_add, ":total_chance", ":sword_chance", ":axe_chance"),
@@ -11,7 +21,7 @@ index 9af03e5..744eb1d 100644
 +
        (try_for_range, ":i_ep", 0, 32),
          (mission_tpl_entry_clear_override_items, "mt_arena_melee_fight", ":i_ep"),
-         (assign, ":has_horse", 0),
+-        (assign, ":has_horse", 0),
          (store_div, ":cur_team", ":i_ep", 8),
 -        (try_begin),
 -          (store_random_in_range, ":random_no", 0, 100),
@@ -87,7 +97,7 @@ index 9af03e5..744eb1d 100644
          (try_begin),
            (ge, ":armor_item_begin", 0),
            (store_add, ":cur_armor_item", ":armor_item_begin", ":cur_team"),
-@@ -38885,7 +38818,6 @@ scripts = [
+@@ -38885,7 +38809,6 @@ scripts = [
          (try_end),
        (try_end),
       ]),
