@@ -1,0 +1,13 @@
+diff --git a/warband/module-system/Module_system 1.171/module_game_menus.py b/warband/module-system/Module_system 1.171/module_game_menus.py
+index 040ec82..54e6abb 100644
+--- a/warband/module-system/Module_system 1.171/module_game_menus.py	
++++ b/warband/module-system/Module_system 1.171/module_game_menus.py	
+@@ -3536,7 +3536,7 @@ game_menus = [
+       ("cattle_drive_away",[],"Drive the cattle onward.",
+        [
+         (party_set_slot, "$g_encountered_party", slot_cattle_driven_by_player, 1),
+-        (party_set_ai_behavior, "$g_encountered_party", ai_bhvr_driven_by_party),
++        (party_set_ai_behavior, "$g_encountered_party", ai_bhvr_attack_party),
+         (party_set_ai_object,"$g_encountered_party", "p_main_party"),
+         (change_screen_return),
+         ]
