@@ -1,0 +1,81 @@
+diff --git a/warband/module-system/Module_system 1.171/module_constants.py b/warband/module-system/Module_system 1.171/module_constants.py
+index 798d5c7..fc54864 100644
+--- a/warband/module-system/Module_system 1.171/module_constants.py	
++++ b/warband/module-system/Module_system 1.171/module_constants.py	
+@@ -553,7 +553,7 @@ spt_town               = 3
+ spt_village            = 4
+ ##spt_forager            = 5
+ ##spt_war_party          = 6
+-##spt_patrol             = 7
++spt_patrol             = 7
+ ##spt_messenger          = 8
+ ##spt_raider             = 9
+ ##spt_scout              = 10
+diff --git a/warband/module-system/Module_system 1.171/module_scripts.py b/warband/module-system/Module_system 1.171/module_scripts.py
+index 9af03e5..0b8d135 100644
+--- a/warband/module-system/Module_system 1.171/module_scripts.py	
++++ b/warband/module-system/Module_system 1.171/module_scripts.py	
+@@ -21786,9 +21786,10 @@ scripts = [
+ ##        (eq, ":party_type", spt_scout),
+ ##        (assign, ":party_count_limit", 1),
+ ##      (else_try),
+-##        (eq, ":party_type", spt_patrol),
+-##        (assign, ":party_count_limit", 1),
+-##      (else_try),
++        (eq, ":party_type", spt_patrol),
++        (assign, ":party_count_limit", ":num_towns"),
++        (val_mul, ":party_count_limit", 2),
++      (else_try),
+ ##        (eq, ":party_type", spt_messenger),
+ ##        (assign, ":party_count_limit", 1),
+ ##      (else_try),
+@@ -21842,10 +21843,10 @@ scripts = [
+ ##        (assign, ":party_template", "pt_scout_party"),
+ #        (assign, ":party_name_str", "str_s7_scouts"),
+ ##      (else_try),
+-##        (eq, ":party_type", spt_patrol),
+-##        (assign, ":party_template", "pt_patrol_party"),
++        (eq, ":party_type", spt_patrol),
++        (assign, ":party_template", "pt_patrol_party"),
+ #        (assign, ":party_name_str", "str_s7_patrol"),
+-##      (else_try),
++      (else_try),
+         (eq, ":party_type", spt_kingdom_caravan),
+         (assign, ":party_template", "pt_kingdom_caravan_party"),
+ #        (assign, ":party_name_str", "str_s7_caravan"),
+@@ -21897,10 +21898,11 @@ scripts = [
+ ##          (eq, ":party_type", spt_scout),
+ ##          (party_add_template, ":result", ":reinforcements_c"),
+ ##        (else_try),
+-##          (eq, ":party_type", spt_patrol),
++          (eq, ":party_type", spt_patrol),
++# TODO: maybe also uncomment the line below
+ ##          (party_add_template, ":result", ":reinforcements_a"),
+-##          (party_add_template, ":result", ":reinforcements_b"),
+-##        (else_try),
++          (party_add_template, ":result", ":reinforcements_b"),
++        (else_try),
+           (eq, ":party_type", spt_kingdom_caravan),
+           (try_begin),
+             (eq, ":faction_no", "fac_player_supporters_faction"),
+diff --git a/warband/module-system/Module_system 1.171/module_triggers.py b/warband/module-system/Module_system 1.171/module_triggers.py
+index 20d7147..c80afbc 100644
+--- a/warband/module-system/Module_system 1.171/module_triggers.py	
++++ b/warband/module-system/Module_system 1.171/module_triggers.py	
+@@ -286,11 +286,11 @@ triggers = [
+ ##        (lt, ":random_no", 10),
+ ##        (call_script, "script_create_kingdom_party_if_below_limit", ":cur_kingdom", spt_scout),
+ ##      (try_end),
+-##      (try_begin),
+-##        (store_random_in_range, ":random_no", 0, 100),
+-##        (lt, ":random_no", 10),
+-##        (call_script, "script_create_kingdom_party_if_below_limit", ":cur_kingdom", spt_patrol),
+-##      (try_end),
++      (try_begin),
++        (store_random_in_range, ":random_no", 0, 100),
++        (lt, ":random_no", 10),
++        (call_script, "script_create_kingdom_party_if_below_limit", ":cur_kingdom", spt_patrol),
++      (try_end),
+ ##      (try_begin),
+ ##        (store_random_in_range, ":random_no", 0, 100),
+ ##        (lt, ":random_no", 10),
