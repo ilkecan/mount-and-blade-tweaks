@@ -1,0 +1,18 @@
+diff --git a/warband/module-system/Module_system 1.171/module_simple_triggers.py b/warband/module-system/Module_system 1.171/module_simple_triggers.py
+index 1a63807..3ba873b 100644
+--- a/warband/module-system/Module_system 1.171/module_simple_triggers.py	
++++ b/warband/module-system/Module_system 1.171/module_simple_triggers.py	
+@@ -371,13 +371,6 @@ simple_triggers = [
+       (jump_to_menu, "mnu_oath_fulfilled"),
+     ]),
+ 
+-  # Reducing luck by 1 in every 180 hours
+-  (180,
+-   [
+-     (val_sub, "$g_player_luck", 1),
+-     (val_max, "$g_player_luck", 0),
+-    ]),
+-
+ 	#courtship reset
+   (72,
+    [
