@@ -1,0 +1,13 @@
+diff --git a/warband/module-system/Module_system 1.171/module_game_menus.py b/warband/module-system/Module_system 1.171/module_game_menus.py
+index 040ec82..fd6ebb4 100644
+--- a/warband/module-system/Module_system 1.171/module_game_menus.py	
++++ b/warband/module-system/Module_system 1.171/module_game_menus.py	
+@@ -10508,7 +10508,7 @@ game_menus = [
+      (quest_get_slot, reg3, "qst_collect_taxes", slot_quest_gold_reward),
+      (try_begin),
+        (eq, "$qst_collect_taxes_halve_taxes", 0),
+-       (call_script, "script_change_player_relation_with_center", "$current_town", -2),   
++       (call_script, "script_change_player_relation_with_center", "$current_town", 0),
+      (try_end),
+      (call_script, "script_succeed_quest", "qst_collect_taxes"),
+      ],
