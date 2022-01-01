@@ -68,7 +68,7 @@ index 040ec82..43d5ac7 100644
        
 +      ("recruit_volunteers",
 +      [
-+        (call_script, "cf_town_castle_recruit_volunteers_cond"),
++        (call_script, "script_cf_town_castle_recruit_volunteers_cond"),
 +       ]
 +       ,"Recruit Volunteers.",
 +       [
