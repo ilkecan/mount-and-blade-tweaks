@@ -1,0 +1,32 @@
+diff --git a/warband/module-system/Module_system 1.171/module_scripts.py b/warband/module-system/Module_system 1.171/module_scripts.py
+index 9af03e5..6ca95cf 100644
+--- a/warband/module-system/Module_system 1.171/module_scripts.py	
++++ b/warband/module-system/Module_system 1.171/module_scripts.py	
+@@ -15142,6 +15142,27 @@ scripts = [
+       (val_div, ":loot_probability", ":num_player_party_shares"),
+ 
+       (party_get_num_companion_stacks, ":num_stacks",":enemy_party"),
++        (assign, ":last_stack", ":num_stacks"),
++        (try_for_range, ":unused", 0, ":num_stacks"),
++          (assign, ":best_stack", -1),
++          (assign, ":best_level", -1),
++          (try_for_range, ":cur_stack", 0, ":last_stack"),
++            (party_stack_get_troop_id, ":cur_troop", ":enemy_party", ":cur_stack"),
++            (neg|troop_is_hero, ":cur_troop"),
++            (store_character_level, ":troop_level", ":cur_troop"),
++            (gt, ":troop_level", ":best_level"),
++            (assign, ":best_level", ":troop_level"),
++            (assign, ":best_stack", ":cur_stack"),
++          (try_end),
++          (try_begin),
++            (gt, ":best_stack", -1),
++            (party_stack_get_troop_id, ":stack_troop", ":enemy_party", ":best_stack"),
++            (party_stack_get_size, ":stack_size", ":enemy_party", ":best_stack"),
++            (party_remove_members, ":enemy_party", ":stack_troop", ":stack_size"),
++            (party_add_members, ":enemy_party", ":stack_troop", ":stack_size"),
++            (val_sub, ":last_stack", 1),
++          (try_end),
++        (try_end),
+       (try_for_range, ":i_stack", 0, ":num_stacks"),
+         (party_stack_get_troop_id, ":stack_troop",":enemy_party",":i_stack"),
+         (neg|troop_is_hero, ":stack_troop"),
