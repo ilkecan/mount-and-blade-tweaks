@@ -1,0 +1,24 @@
+diff --git a/warband/module-system/Module_system 1.171/module_game_menus.py b/warband/module-system/Module_system 1.171/module_game_menus.py
+index 040ec82..6be38af 100644
+--- a/warband/module-system/Module_system 1.171/module_game_menus.py	
++++ b/warband/module-system/Module_system 1.171/module_game_menus.py	
+@@ -12509,8 +12509,8 @@ game_menus = [
+         (jump_to_menu, "mnu_invite_player_to_faction_accepted"),
+         ]),
+       ("faction_reject",[],"Decline the invitation.",
+-       [(call_script, "script_change_player_relation_with_troop", "$g_invite_faction_lord", -3),
+-        (call_script, "script_change_player_relation_with_faction", "$g_invite_faction", -10),
++       [(call_script, "script_change_player_relation_with_troop", "$g_invite_faction_lord", 0),
++        (call_script, "script_change_player_relation_with_faction", "$g_invite_faction", 0),
+         (assign, "$g_invite_faction", 0),
+         (assign, "$g_invite_faction_lord", 0),
+         (assign, "$g_invite_offered_center", 0),
+@@ -12551,7 +12551,7 @@ game_menus = [
+         (jump_to_menu, "mnu_invite_player_to_faction_accepted"),
+         ]),
+       ("faction_reject",[],"Decline the invitation.",
+-       [(call_script, "script_change_player_relation_with_troop", "$g_invite_faction_lord", -3),
++       [(call_script, "script_change_player_relation_with_troop", "$g_invite_faction_lord", 0),
+         (assign, "$g_invite_faction", 0),
+         (assign, "$g_invite_faction_lord", 0),
+         (assign, "$g_invite_offered_center", 0),
