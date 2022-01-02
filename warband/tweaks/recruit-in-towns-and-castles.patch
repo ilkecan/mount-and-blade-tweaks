@@ -1,5 +1,5 @@
 diff --git a/warband/module-system/Module_system 1.171/module_game_menus.py b/warband/module-system/Module_system 1.171/module_game_menus.py
-index 040ec82..43d5ac7 100644
+index 040ec82..171ede3 100644
 --- a/warband/module-system/Module_system 1.171/module_game_menus.py	
 +++ b/warband/module-system/Module_system 1.171/module_game_menus.py	
 @@ -7770,7 +7770,13 @@ game_menus = [
@@ -62,10 +62,10 @@ index 040ec82..43d5ac7 100644
        ]),
      ],
    ),
-@@ -8833,6 +8857,19 @@ game_menus = [
-            (try_end),
-         ], "Door to the castle."),
-       
+@@ -9582,6 +9606,19 @@ game_menus = [
+         (jump_to_menu, "mnu_lady_visit"),
+         ], "Door to the garden."),										
+ 		
 +      ("recruit_volunteers",
 +      [
 +        (call_script, "script_cf_town_castle_recruit_volunteers_cond"),
@@ -79,11 +79,11 @@ index 040ec82..43d5ac7 100644
 +         (try_end),
 +        ]),
 +
-       ("town_center",
-       [                        
-         (party_slot_eq, "$current_town", slot_party_type, spt_town),
+       ("trade_with_merchants",
+        [
+            (party_slot_eq,"$current_town",slot_party_type, spt_town)
 diff --git a/warband/module-system/Module_system 1.171/module_scripts.py b/warband/module-system/Module_system 1.171/module_scripts.py
-index 9af03e5..80f75bb 100644
+index e756cc4..9744213 100644
 --- a/warband/module-system/Module_system 1.171/module_scripts.py	
 +++ b/warband/module-system/Module_system 1.171/module_scripts.py	
 @@ -33944,6 +33944,25 @@ scripts = [
